@@ -1,0 +1,22 @@
+select * from Todolist;
+
+-- get the most recent 5 tasks that got updated with the status of ‘Completed’ status.
+select * from Todolist 
+	WHERE Status = "completed"
+    ORDER BY dateUpdated DESC
+    LIMIT 5; 
+    
+-- fetch all the tasks do have the word ‘manager’ in anywhere in the title.
+select * from Todolist WHERE Title LIKE "%manager%"; 
+
+--  update all the ‘Pending’ and ‘To do’ tasks as ‘Completed’ 
+SET SQL_SAFE_UPDATES = 0;
+UPDATE todolist SET Status= "completed" WHERE Status="to do" or Status="pending"; 
+
+-- display country names which contain more than 100 users
+SELECT countries.name 
+FROM countries
+RiGHT JOIN users
+on countries.code = users.country_code
+GROUP BY (country_code)
+HAVING COUNT(country_code)>100;
